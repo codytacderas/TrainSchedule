@@ -7,6 +7,7 @@
     messagingSenderId: "106860155139"
   };
   firebase.initializeApp(config);
+  var database = firebase.database();
 
 // Button for adding Employees
 
@@ -46,21 +47,15 @@ database.ref().on("child_added", function(childSnapshot, prevChildKey) {
   console.log(frequency);
   console.log(firstTrain);
   // Prettify the employee start
-  var empStartPretty = moment.unix(empStart).format("MM/DD/YY");
-  // Calculate the months worked using hardcore math
-  // To calculate the months worked
-  var empMonths = moment().diff(moment.unix(empStart, "X"), "months");
-  console.log(empMonths);
-  // Calculate the total billed rate
-  var empBilled = empMonths * empRate;
-  console.log(empBilled);
+  // var empStartPretty = moment.unix(empStart).format("MM/DD/YY");
+  // // Calculate the months worked using hardcore math
+  // // To calculate the months worked
+  // var empMonths = moment().diff(moment.unix(empStart, "X"), "months");
+  // console.log(empMonths);
+  // // Calculate the total billed rate
+  // var empBilled = empMonths * empRate;
+  // console.log(empBilled);
   // Add each train's data into the table
-  $("#employee-table > tbody").append("<tr><td>" + trainName + "</td><td>" + destination + "</td><td>" +
-  frequency + "</td><td>" + empMonths + "</td><td>" + empRate + "</td><td>" + empBilled + "</td></tr>");
+  $("#trainTable > tbody").append("<tr><td>" + trainName + "</td><td>" + destination + "</td><td>" +
+  frequency);
 });
-// Example Time Math
-// -----------------------------------------------------------------------------
-// Assume Employee start date of January 1, 2015
-// Assume current date is March 1, 2016
-// We know that this is 15 months.
-// Now we will create code in moment.js to confirm that any attempt we use mets this test case
